@@ -1,11 +1,11 @@
 document.addEventListener("alpine:init", () => {
   Alpine.data("products", () => ({
     items: [
-      { id: 1, name: "Robusta Brazil", img: "1.jpg", price: 20000 },
-      { id: 2, name: "Arabica Blend", img: "2.jpg", price: 25000 },
-      { id: 3, name: "Primo Pacso", img: "3.jpg", price: 30000 },
-      { id: 4, name: "Aceh Gayo", img: "4.jpg", price: 35000 },
-      { id: 2, name: "Sumatra Madheling", img: "5.jpg", price: 40000 },
+      { id: 1, name: "Robusta Brazil", img: "1.jpg.jpg", price: 20000 },
+      { id: 2, name: "Arabica Blend", img: "2.jpg.jpg", price: 25000 },
+      { id: 3, name: "Primo Pacso", img: "3.jpg.jpg", price: 30000 },
+      { id: 4, name: "Aceh Gayo", img: "4.jpg.jpg", price: 35000 },
+      { id: 2, name: "Sumatra Madheling", img: "5.jpg.jpg", price: 40000 },
     ],
   }));
 
@@ -38,7 +38,6 @@ document.addEventListener("alpine:init", () => {
           }
         });
       }
-      console.log(this.total);
     },
     remove(id) {
       // ambil item yang mau di remove berdasarkan idnya
@@ -95,7 +94,7 @@ checkoutButton.addEventListener("click", async function (e) {
   const objData = Object.fromEntries(data);
   const massage = formatMassage(objData);
   window.open("http://wa.me/6281356206507?text=" + encodeURIComponent(massage));
-
+});
 
 // Format pesan whatsapp
 const formatMassage = (obj) => {
