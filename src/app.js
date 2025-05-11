@@ -92,12 +92,23 @@ checkoutButton.addEventListener("click", async function (e) {
   const formData = new FormData(form);
   const data = new URLSearchParams(formData);
   const objData = Object.fromEntries(data);
-  const massage = formatMassage(objData);
-  window.open("http://wa.me/6281356206507?text=" + encodeURIComponent(massage));
+
+  // minta transaction token menggunakan ajax/fetch
+  try {
+    const response = await fetch("php/placeOrder.php", {
+      method: "POST",
+      body: data,
+    });
+    const token = await response.text();
+    // console.log(token);
+    window.snap.pay("token");
+  } catch (err) {
+    console.log(err.message);
+  }
 });
 
 // Format pesan whatsapp
-const formatMassage = (obj) => {
+function formatMassage(obj) {
   return `Data Custumer
   Nama: ${obj.name}
   Email: ${obj.email}
@@ -108,7 +119,7 @@ Data Pesanan
  )}
  TOTAL: ${rupiah(obj.total)}
  Terima kasih.`;
-};
+}
 
 // Konversi ke rupiah
 const rupiah = (number) => {
